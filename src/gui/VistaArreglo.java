@@ -13,11 +13,14 @@ import javax.swing.JPanel;
 
 import ordenamientos.Burbujeo;
 import ordenamientos.Estrategia;
+import ordenamientos.Insercion;
+import ordenamientos.QuickSort;
 import ordenamientos.Seleccion;
 import javax.swing.Timer;
 @SuppressWarnings ("serial")
 public class VistaArreglo extends JPanel{
 	private Integer[] arreglo = new Integer[100];
+//	private Integer[] arreglo = {3,1,2,5,9,4,6};
 	private int indexActual = 0;
 	private int indexCompara = 0;
 	private int cantidadComparaciones=0;
@@ -49,7 +52,9 @@ public class VistaArreglo extends JPanel{
 	public void run() {
 		paintImmediately(getBounds());
 //		Estrategia estrategia = new Burbujeo();
-		Estrategia estrategia = new Seleccion();
+//		Estrategia estrategia = new Seleccion();
+		Estrategia estrategia = new Insercion();
+//		Estrategia estrategia = new QuickSort();
 		estrategia.ordenar(this);
 		indexActual = -1;
 		indexCompara = -1;
@@ -96,6 +101,18 @@ public class VistaArreglo extends JPanel{
 		update();
 	}
 
+	
+	public void insercion(int indexI, int indexA) {
+		arreglo[indexI] = arreglo[indexA];
+		indexActual = indexA-1;
+		update();
+	}
+	
+	public void setValorInsercion(int index, int valor) {
+		arreglo[index] = valor;
+		update();
+	}
+	
 	private void update() {
 		int tiempoSleep=30;
 		paintImmediately(getBounds());
