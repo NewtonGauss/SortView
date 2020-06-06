@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import ordenamientos.Burbujeo;
 import ordenamientos.Estrategia;
 import ordenamientos.Insercion;
+import ordenamientos.MergeSort;
 import ordenamientos.QuickSort;
 import ordenamientos.Seleccion;
 import ordenamientos.ShellSort;
@@ -24,7 +25,7 @@ public class VistaArreglo extends JPanel{
 	private Integer[] arreglo = new Integer[100];
 //	private Integer[] arreglo = {3,1,2,5,9,4,6};
 	private int indexActual = 0;
-	private int indexCompara = 0;
+	private int indexCompara = -1;
 	private int cantidadComparaciones=0;
 	private int cantidadIntercambios=0;
 	private long msIniciales;
@@ -58,7 +59,8 @@ public class VistaArreglo extends JPanel{
 //		Estrategia estrategia = new Burbujeo();
 //		Estrategia estrategia = new Seleccion();
 //		Estrategia estrategia = new Insercion();
-		Estrategia estrategia = new ShellSort();
+//		Estrategia estrategia = new ShellSort();
+		Estrategia estrategia = new MergeSort();
 //		Estrategia estrategia = new QuickSort();
 		estrategia.ordenar(this);
 		indexActual = -1;
@@ -118,6 +120,7 @@ public class VistaArreglo extends JPanel{
 	
 	public void setValorInsercion(int index, int valor) {
 		arreglo[index] = valor;
+		indexActual = index;
 		update();
 	}
 	
@@ -145,6 +148,11 @@ public class VistaArreglo extends JPanel{
 		this.cantidadComparaciones++;
 		update();
 		return arreglo[indexActual] - valor;
+	}
+	
+	public int compararEnteros(Integer valorA, Integer valorB) {
+		this.cantidadComparaciones++;
+		return valorA.compareTo(valorB);
 	}
 	
 	public Integer getValor(int index) {
