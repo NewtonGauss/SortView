@@ -22,7 +22,6 @@ public class Ventana extends JFrame{
 
 
 	public void run() {
-		panelArreglo.setMsIniciales(System.currentTimeMillis());
 		panelArreglo.run();
 	}
 	

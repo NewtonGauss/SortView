@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -16,6 +17,7 @@ import ordenamientos.Estrategia;
 import ordenamientos.Insercion;
 import ordenamientos.QuickSort;
 import ordenamientos.Seleccion;
+import archivo.Archivo;
 import javax.swing.Timer;
 @SuppressWarnings ("serial")
 public class VistaArreglo extends JPanel{
@@ -26,6 +28,7 @@ public class VistaArreglo extends JPanel{
 	private int cantidadComparaciones=0;
 	private int cantidadIntercambios=0;
 	private long msIniciales;
+	private long msAlMomento;
 	
 
 	private static final int anchoRect = 7;
@@ -54,13 +57,18 @@ public class VistaArreglo extends JPanel{
 	public void run() {
 		paintImmediately(getBounds());
 //		Estrategia estrategia = new Burbujeo();
-//		Estrategia estrategia = new Seleccion();
-		Estrategia estrategia = new Insercion();
+		Estrategia estrategia = new Seleccion();
+//		Estrategia estrategia = new Insercion();
 //		Estrategia estrategia = new QuickSort();
+		msIniciales=System.currentTimeMillis();
 		estrategia.ordenar(this);
 		indexActual = -1;
 		indexCompara = -1;
 		update();
+		String datosAGrabarEnArchivo=estrategia.getClass().getSimpleName()+";<condicion>;"+arreglo.length+";"+msAlMomento;
+		Archivo archivo=new Archivo();
+		archivo.grabarArchivoCsv("resultado.csv", datosAGrabarEnArchivo);
+		
 	}
 
 	@Override
@@ -72,7 +80,8 @@ public class VistaArreglo extends JPanel{
 		graphics.setColor(Color.yellow);
 		graphics.drawString(cantidadComparaciones+ " comparaciones", 10, 15);
 		graphics.drawString(cantidadIntercambios+ " intercambios", 10, 35);
-		graphics.drawString("Tiempo: "+String.format("%6s",System.currentTimeMillis()- msIniciales)+" ms", 10, 55);//
+		msAlMomento=System.currentTimeMillis()- msIniciales;
+		graphics.drawString("Tiempo: "+String.format("%6s",msAlMomento)+" ms", 10, 55);//
 		for (int i = 0; i < arreglo.length; i++) {
 			int alto = arreglo[i] * multAltoRect;
 			int xPos = (i + 8) * anchoRect;
@@ -101,10 +110,6 @@ public class VistaArreglo extends JPanel{
 		this.indexActual = indexIntercambio;
 		cantidadIntercambios++;
 		update();
-	}
-	
-	public void setMsIniciales(long msIniciales) {
-		this.msIniciales = msIniciales;
 	}
 	
 	public void insercion(int indexI, int indexA) {
