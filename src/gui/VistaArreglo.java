@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -17,12 +18,9 @@ import ordenamientos.Estrategia;
 import ordenamientos.Insercion;
 import ordenamientos.QuickSort;
 import ordenamientos.Seleccion;
-<<<<<<< HEAD
 import archivo.Archivo;
-=======
 import ordenamientos.ShellSort;
 
->>>>>>> ccad5b334b859fb7e10044920efe936c9734a151
 import javax.swing.Timer;
 @SuppressWarnings ("serial")
 public class VistaArreglo extends JPanel{
@@ -62,21 +60,19 @@ public class VistaArreglo extends JPanel{
 	public void run() {
 		paintImmediately(getBounds());
 //		Estrategia estrategia = new Burbujeo();
-<<<<<<< HEAD
-		Estrategia estrategia = new Seleccion();
-//		Estrategia estrategia = new Insercion();
-=======
 //		Estrategia estrategia = new Seleccion();
 //		Estrategia estrategia = new Insercion();
-		Estrategia estrategia = new ShellSort();
->>>>>>> ccad5b334b859fb7e10044920efe936c9734a151
-//		Estrategia estrategia = new QuickSort();
+//		Estrategia estrategia = new Seleccion();
+//		Estrategia estrategia = new Insercion();
+//		Estrategia estrategia = new ShellSort();
+		Estrategia estrategia = new QuickSort();
 		msIniciales=System.currentTimeMillis();
 		estrategia.ordenar(this);
 		indexActual = -1;
 		indexCompara = -1;
 		update();
-		String datosAGrabarEnArchivo=estrategia.getClass().getSimpleName()+";<condicion>;"+arreglo.length+";"+msAlMomento;
+		DecimalFormat df = new DecimalFormat("#.00");
+		String datosAGrabarEnArchivo=estrategia.getClass().getSimpleName()+";<condicion>;"+arreglo.length+";"+df.format((double)msAlMomento/1000);
 		Archivo archivo=new Archivo();
 		archivo.grabarArchivoCsv("resultado.csv", datosAGrabarEnArchivo);
 		
