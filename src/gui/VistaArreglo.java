@@ -53,8 +53,8 @@ public class VistaArreglo extends JPanel{
 		paintImmediately(getBounds());
 //		Estrategia estrategia = new Burbujeo();
 //		Estrategia estrategia = new Seleccion();
-		Estrategia estrategia = new Insercion();
-//		Estrategia estrategia = new QuickSort();
+//		Estrategia estrategia = new Insercion();
+		Estrategia estrategia = new QuickSort();
 		estrategia.ordenar(this);
 		indexActual = -1;
 		indexCompara = -1;
@@ -114,7 +114,7 @@ public class VistaArreglo extends JPanel{
 	}
 	
 	private void update() {
-		int tiempoSleep=30;
+		int tiempoSleep=10;
 		paintImmediately(getBounds());
 		try {
 			Thread.sleep(tiempoSleep);
