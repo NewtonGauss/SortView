@@ -25,7 +25,9 @@ public class VistaArreglo extends JPanel{
 	private int indexCompara = 0;
 	private int cantidadComparaciones=0;
 	private int cantidadIntercambios=0;
-	private int msTotales=0;
+	private long msIniciales;
+	
+
 	private static final int anchoRect = 7;
 	private static final int multAltoRect = 4;
 
@@ -70,7 +72,7 @@ public class VistaArreglo extends JPanel{
 		graphics.setColor(Color.yellow);
 		graphics.drawString(cantidadComparaciones+ " comparaciones", 10, 15);
 		graphics.drawString(cantidadIntercambios+ " intercambios", 10, 35);
-		graphics.drawString("Tiempo: "+String.format("%6s", msTotales/1000)+" ms", 10, 55);//no estoy orgulloso de esto. Voy a buscar una mejor forma. Dani. 
+		graphics.drawString("Tiempo: "+String.format("%6s",System.currentTimeMillis()- msIniciales)+" ms", 10, 55);//
 		for (int i = 0; i < arreglo.length; i++) {
 			int alto = arreglo[i] * multAltoRect;
 			int xPos = (i + 8) * anchoRect;
@@ -100,7 +102,10 @@ public class VistaArreglo extends JPanel{
 		cantidadIntercambios++;
 		update();
 	}
-
+	
+	public void setMsIniciales(long msIniciales) {
+		this.msIniciales = msIniciales;
+	}
 	
 	public void insercion(int indexI, int indexA) {
 		arreglo[indexI] = arreglo[indexA];
@@ -114,11 +119,10 @@ public class VistaArreglo extends JPanel{
 	}
 	
 	private void update() {
-		int tiempoSleep=10;
+		int tiempoSleep=5;
 		paintImmediately(getBounds());
 		try {
 			Thread.sleep(tiempoSleep);
-			msTotales+=tiempoSleep;
 		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}
