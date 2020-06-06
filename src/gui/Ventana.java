@@ -17,7 +17,7 @@ public class Ventana extends JFrame{
 	private VistaArreglo panelArreglo;
 	
 	public Ventana() {
-		panelArreglo = new VistaArreglo(new Seleccion(), 10, 2);
+		panelArreglo = new VistaArreglo(new QuickSort(), 10, 2);
 	}
 
 	public void init() {
@@ -33,7 +33,6 @@ public class Ventana extends JFrame{
 
 
 	public void run() {
-		panelArreglo.setMsIniciales(System.currentTimeMillis());
 		panelArreglo.run();
 	}
 	

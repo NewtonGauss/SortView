@@ -10,6 +10,14 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 import ordenamientos.Estrategia;
+
+import ordenamientos.Insercion;
+import ordenamientos.QuickSort;
+import ordenamientos.Seleccion;
+import archivo.Archivo;
+import ordenamientos.ShellSort;
+
+import javax.swing.Timer;
 @SuppressWarnings ("serial")
 public class VistaArreglo extends JPanel{
 	private Integer[] arreglo = new Integer[100];
@@ -20,6 +28,7 @@ public class VistaArreglo extends JPanel{
 	private long msIniciales;
 	private int indexPrimerOrdenado = -1;
 	private int indexUltimoOrdenado = -1;
+	private long msAlMomento;
 	
 
 	private static final int anchoRect = 7;
@@ -82,7 +91,8 @@ public class VistaArreglo extends JPanel{
 		graphics.setColor(Color.yellow);
 		graphics.drawString(cantidadComparaciones+ " comparaciones", 10, 15);
 		graphics.drawString(cantidadIntercambios+ " intercambios", 10, 35);
-		graphics.drawString("Tiempo: "+String.format("%6s",System.currentTimeMillis()- msIniciales)+" ms", 10, 55);//
+		msAlMomento=System.currentTimeMillis()- msIniciales;
+		graphics.drawString("Tiempo: "+String.format("%6s",msAlMomento)+" ms", 10, 55);//
 		for (int i = 0; i < arreglo.length; i++) {
 			int alto = arreglo[i] * multAltoRect;
 			int xPos = (i + 8) * anchoRect;
