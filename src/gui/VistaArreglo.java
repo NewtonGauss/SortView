@@ -16,7 +16,7 @@ import ordenamientos.QuickSort;
 import ordenamientos.Seleccion;
 import archivo.Archivo;
 import ordenamientos.ShellSort;
-
+import java.text.DecimalFormat;
 import javax.swing.Timer;
 @SuppressWarnings ("serial")
 public class VistaArreglo extends JPanel{
@@ -76,10 +76,15 @@ public class VistaArreglo extends JPanel{
 	
 	public void run() {
 		paintImmediately(getBounds());
+		msIniciales=System.currentTimeMillis();
 		estrategia.ordenar(this);
 		indexActual = -1;
 		indexCompara = -1;
 		update();
+		DecimalFormat df = new DecimalFormat("#.00");
+		String datosAGrabarEnArchivo=estrategia.getClass().getSimpleName()+";<condicion>;"+arreglo.length+";"+df.format((double)msAlMomento/1000);
+		Archivo archivo=new Archivo();
+		archivo.grabarArchivoCsv("resultado.csv", datosAGrabarEnArchivo);
 	}
 
 	@Override
@@ -123,10 +128,6 @@ public class VistaArreglo extends JPanel{
 		this.indexActual = indexIntercambio;
 		cantidadIntercambios++;
 		update();
-	}
-	
-	public void setMsIniciales(long msIniciales) {
-		this.msIniciales = msIniciales;
 	}
 	
 	public void insercion(int indexI, int indexA) {

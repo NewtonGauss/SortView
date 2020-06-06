@@ -1,3 +1,7 @@
 Algoritmo;Condición;Elementos;Tiempo en segundos
 QuickSort;<condicion>;100;10,27
 QuickSort;<condicion>;100;10,62
+QuickSort;<condicion>;100;9,16
+QuickSort;<condicion>;100;10,14
+QuickSort;<condicion>;100;9,66
+QuickSort;<condicion>;100;10,59
