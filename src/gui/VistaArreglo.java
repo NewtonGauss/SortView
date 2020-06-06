@@ -53,8 +53,8 @@ public class VistaArreglo extends JPanel{
 		paintImmediately(getBounds());
 //		Estrategia estrategia = new Burbujeo();
 //		Estrategia estrategia = new Seleccion();
-//		Estrategia estrategia = new Insercion();
-		Estrategia estrategia = new QuickSort();
+		Estrategia estrategia = new Insercion();
+//		Estrategia estrategia = new QuickSort();
 		estrategia.ordenar(this);
 		indexActual = -1;
 		indexCompara = -1;
@@ -130,6 +130,14 @@ public class VistaArreglo extends JPanel{
 		this.cantidadComparaciones++;
 		update();
 		return arreglo[indexActual] - arreglo[indexCompara];
+	}
+	
+	public int compararValor(int indexActual, Integer valor) {
+		this.indexActual = indexActual;
+		this.indexCompara = -1;
+		this.cantidadComparaciones++;
+		update();
+		return arreglo[indexActual] - valor;
 	}
 	
 	public Integer getValor(int index) {
