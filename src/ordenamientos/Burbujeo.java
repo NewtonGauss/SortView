@@ -15,11 +15,11 @@ public class Burbujeo implements Estrategia {
                 huboCambios = true;
             }
         }
-        arreglo.updateOrdanados(len - 1 - i, len - 1);
+        arreglo.setParteOrdenada(len - 1 - i, len - 1);
         if (!huboCambios)
         	break;
     }
-    arreglo.updateOrdanados(0, len - 1);
+    arreglo.setParteOrdenada(0, len - 1);
 	}
 
 }

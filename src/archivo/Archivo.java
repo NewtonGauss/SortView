@@ -3,33 +3,30 @@ package archivo;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-
+import java.io.IOException;
 
 public class Archivo {
-	public void grabarArchivoCsv(String path, String registro) {
-		try {
-			String encabezado = null;
-			File file = new File(path);
-			FileWriter fw;
-			if (!file.exists()) {
-				file.createNewFile();
-				encabezado = "Algoritmo;Condición;Elementos;Tiempo en segundos";
-				// Instanciar referencia de FileWriter
-				fw = new FileWriter(file);
-			}else
-			{
-				// Instanciar referencia de FileWriter (con append=true para que agregue al final).
-				fw = new FileWriter(file,true);
-			}
-			BufferedWriter bw = new BufferedWriter(fw);
-			if (encabezado != null) {
-				bw.write(encabezado+"\n");
-			}
-			bw.append(registro+"\n");
-			bw.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private static final char separador = ',';
 
+	public void grabarArchivoCsv(String path, RegistroOrden registro)
+			throws IOException {
+		FileWriter fw = abrirArchivo(path);
+		BufferedWriter bw = new BufferedWriter(fw);
+		registro.setSeparador(separador);
+		bw.append(registro + "\n");
+		bw.close();
+	}
+
+	private FileWriter abrirArchivo(String path) throws IOException {
+		File file = new File(path);
+		FileWriter fw;
+		if (!file.exists()) {
+			file.createNewFile();
+			fw = new FileWriter(file);
+			fw.write("Algoritmo" + separador + "Condicion" + separador
+					+ "Cantidad de elementos" + separador + "Tiempo en segundos\n");
+		} else
+			fw = new FileWriter(file, true);
+		return fw;
 	}
 }

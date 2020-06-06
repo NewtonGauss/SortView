@@ -4,25 +4,27 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import ordenamientos.Burbujeo;
-import ordenamientos.Insercion;
+import gui.VistaArreglo.Orden;
 import ordenamientos.MergeSort;
-import ordenamientos.QuickSort;
-import ordenamientos.Seleccion;
-import ordenamientos.ShellSort;
 
 @SuppressWarnings ("serial")
-public class Ventana extends JFrame{
-	
+public class Ventana extends JFrame {
+
 	private VistaArreglo panelArreglo;
-	
+
 	public Ventana() {
-		panelArreglo = new VistaArreglo(new QuickSort(), 10, 2);
+		panelArreglo = new VistaArreglo(new MergeSort(), 10, Orden.ALEATORIO);
+	}
+
+	public static void main(String[] args) {
+		Ventana gui = new Ventana();
+		gui.init();
+		gui.run();
 	}
 
 	public void init() {
 		add(panelArreglo);
-	
+
 		pack();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -31,18 +33,9 @@ public class Ventana extends JFrame{
 		requestFocusInWindow();
 	}
 
+	public void run() { panelArreglo.run(); }
 
-	public void run() {
-		panelArreglo.run();
-	}
-	
 	@Override
 	public Dimension getPreferredSize() { return new Dimension(800, 450); }
-	
-	public static void main(String[] args) {
-		Ventana gui = new Ventana();
-		gui.init();
-		gui.run();
-	}
-	
+
 }

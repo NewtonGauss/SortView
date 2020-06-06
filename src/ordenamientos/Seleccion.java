@@ -16,9 +16,9 @@ public class Seleccion implements Estrategia {
 					indexMenor = j;
 			}
 				arreglo.intercambio(i, indexMenor);
-				arreglo.updateOrdanados(0, i);
+				arreglo.setParteOrdenada(0, i);
 		}
-		arreglo.updateOrdanados(0, len - 1);
+		arreglo.setParteOrdenada(0, len - 1);
 	}
 
 }

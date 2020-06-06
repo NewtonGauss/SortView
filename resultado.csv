@@ -1,7 +1,4 @@
-Algoritmo;Condición;Elementos;Tiempo en segundos
-QuickSort;<condicion>;100;10,27
-QuickSort;<condicion>;100;10,62
-QuickSort;<condicion>;100;9,16
-QuickSort;<condicion>;100;10,14
-QuickSort;<condicion>;100;9,66
-QuickSort;<condicion>;100;10,59
+Algoritmo,Condicion,Cantidad de elementos,Tiempo en segundos
+MergeSort,ALEATORIO,100,7.82
+MergeSort,ALEATORIO,100,7.83
+MergeSort,ALEATORIO,100,7.79
