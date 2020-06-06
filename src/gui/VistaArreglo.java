@@ -17,7 +17,12 @@ import ordenamientos.Estrategia;
 import ordenamientos.Insercion;
 import ordenamientos.QuickSort;
 import ordenamientos.Seleccion;
+<<<<<<< HEAD
 import archivo.Archivo;
+=======
+import ordenamientos.ShellSort;
+
+>>>>>>> ccad5b334b859fb7e10044920efe936c9734a151
 import javax.swing.Timer;
 @SuppressWarnings ("serial")
 public class VistaArreglo extends JPanel{
@@ -57,8 +62,14 @@ public class VistaArreglo extends JPanel{
 	public void run() {
 		paintImmediately(getBounds());
 //		Estrategia estrategia = new Burbujeo();
+<<<<<<< HEAD
 		Estrategia estrategia = new Seleccion();
 //		Estrategia estrategia = new Insercion();
+=======
+//		Estrategia estrategia = new Seleccion();
+//		Estrategia estrategia = new Insercion();
+		Estrategia estrategia = new ShellSort();
+>>>>>>> ccad5b334b859fb7e10044920efe936c9734a151
 //		Estrategia estrategia = new QuickSort();
 		msIniciales=System.currentTimeMillis();
 		estrategia.ordenar(this);
@@ -114,7 +125,7 @@ public class VistaArreglo extends JPanel{
 	
 	public void insercion(int indexI, int indexA) {
 		arreglo[indexI] = arreglo[indexA];
-		indexActual = indexA-1;
+		indexActual = indexI;
 		update();
 	}
 	
@@ -124,7 +135,7 @@ public class VistaArreglo extends JPanel{
 	}
 	
 	private void update() {
-		int tiempoSleep=5;
+		int tiempoSleep=10;
 		paintImmediately(getBounds());
 		try {
 			Thread.sleep(tiempoSleep);

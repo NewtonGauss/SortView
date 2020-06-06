@@ -3,11 +3,7 @@ package ordenamientos;
 import gui.VistaArreglo;
 
 public class Insercion implements Estrategia {
-	
-	/*
-	 * Por seguir implementando
-	 * Solo hace una pasada.
-	 */
+
 	@Override
 	public void ordenar(VistaArreglo arreglo) {
 		
