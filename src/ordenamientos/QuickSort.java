@@ -7,6 +7,7 @@ public class QuickSort implements Estrategia{
 	@Override
 	public void ordenar(VistaArreglo arreglo) {
 		ordenar(arreglo,0,arreglo.arregloLength()-1);
+		arreglo.updateOrdanados(0, arreglo.arregloLength() - 1);
 	}
 
 		private void ordenar(VistaArreglo arreglo, int inferior, int superior) {
@@ -14,6 +15,7 @@ public class QuickSort implements Estrategia{
 				int pivot = partition(arreglo, inferior, superior);
 
 				ordenar(arreglo, inferior, pivot - 1);
+				arreglo.updateOrdanados(0, pivot);
 				ordenar(arreglo, pivot + 1, superior);
 			}
 		}

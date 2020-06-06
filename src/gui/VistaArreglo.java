@@ -5,40 +5,50 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.JPanel;
 
-import ordenamientos.Burbujeo;
 import ordenamientos.Estrategia;
-import ordenamientos.Insercion;
-import ordenamientos.MergeSort;
-import ordenamientos.QuickSort;
-import ordenamientos.Seleccion;
-import ordenamientos.ShellSort;
-
-import javax.swing.Timer;
 @SuppressWarnings ("serial")
 public class VistaArreglo extends JPanel{
 	private Integer[] arreglo = new Integer[100];
-//	private Integer[] arreglo = {3,1,2,5,9,4,6};
 	private int indexActual = 0;
 	private int indexCompara = -1;
 	private int cantidadComparaciones=0;
 	private int cantidadIntercambios=0;
 	private long msIniciales;
+	private int indexPrimerOrdenado = -1;
+	private int indexUltimoOrdenado = -1;
 	
 
 	private static final int anchoRect = 7;
 	private static final int multAltoRect = 4;
+	private int tiempoSleep;
+	private Estrategia estrategia;
 
-	public VistaArreglo() {
+	public VistaArreglo(Estrategia ordenamiento, int sleep, int orden) {
 		setBackground(Color.DARK_GRAY);
-		ordenInverso();
-		shuffle();
-		cantidadIntercambios=0;
+		switch (orden) {
+		case 1:
+			ordenInverso();
+			break;
+		case 2:
+			ordenInverso();
+			shuffle();
+			break;
+		case 3:
+		default:
+			ordenAscedente();
+			break;
+		}
+		tiempoSleep = sleep;
+		estrategia = ordenamiento;
+	}
+
+	private void ordenAscedente() {
+		for (int i = 0; i < arreglo.length; i++)
+			arreglo[i] = i + 1;
 	}
 
 	private void ordenInverso() {
@@ -52,16 +62,11 @@ public class VistaArreglo extends JPanel{
         int indexSwap = rand.nextInt(arreglo.length - 1);
         intercambio(i, indexSwap);
     }
+    cantidadIntercambios = 0;
 }
 	
 	public void run() {
 		paintImmediately(getBounds());
-//		Estrategia estrategia = new Burbujeo();
-//		Estrategia estrategia = new Seleccion();
-//		Estrategia estrategia = new Insercion();
-//		Estrategia estrategia = new ShellSort();
-		Estrategia estrategia = new MergeSort();
-//		Estrategia estrategia = new QuickSort();
 		estrategia.ordenar(this);
 		indexActual = -1;
 		indexCompara = -1;
@@ -86,6 +91,8 @@ public class VistaArreglo extends JPanel{
 				graphics.setColor(Color.RED);
 			else if (i == indexCompara)
 				graphics.setColor(Color.GREEN);
+			else if (i >= indexPrimerOrdenado && i <= indexUltimoOrdenado)
+				graphics.setColor(Color.BLUE);
 			else
 				graphics.setColor(Color.WHITE);
 			graphics.fillRect(xPos, yPos, anchoRect, alto);
@@ -125,7 +132,6 @@ public class VistaArreglo extends JPanel{
 	}
 	
 	private void update() {
-		int tiempoSleep=10;
 		paintImmediately(getBounds());
 		try {
 			Thread.sleep(tiempoSleep);
@@ -157,6 +163,11 @@ public class VistaArreglo extends JPanel{
 	
 	public Integer getValor(int index) {
 		return arreglo[index];
+	}
+	
+	public void updateOrdanados(int inicio, int fin) {
+		indexPrimerOrdenado = inicio;
+		indexUltimoOrdenado = fin;
 	}
 
 }

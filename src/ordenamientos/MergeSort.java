@@ -7,6 +7,7 @@ public class MergeSort implements Estrategia {
 	@Override
 	public void ordenar(VistaArreglo arreglo) {
 		ordenar(arreglo, 0, arreglo.arregloLength() - 1);
+		arreglo.updateOrdanados(0, arreglo.arregloLength() - 1);
 	}
 
 	private void ordenar(VistaArreglo arreglo, int limiteIzq, int limiteDer) {
@@ -47,18 +48,21 @@ public class MergeSort implements Estrategia {
 				j++;
 			}
 			k++;
+			arreglo.updateOrdanados(limiteIzq, k);
 		}
 
 		while (i < n1) {
 			arreglo.setValorInsercion(k, arregloTemporalIzquierdo[i]);
 			i++;
 			k++;
+			arreglo.updateOrdanados(limiteIzq, k);
 		}
 
 		while (j < n2) {
 			arreglo.setValorInsercion(k, arregloTemporalDerecho[j]);
 			j++;
 			k++;
+			arreglo.updateOrdanados(limiteIzq, k);
 		}
 	}
 

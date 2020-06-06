@@ -15,6 +15,8 @@ public class ShellSort implements Estrategia {
 				for (j = i; j >= espacio && arreglo.compararValor(j - espacio, temporal) > 0; j -= espacio)
 					arreglo.insercion(j, j - espacio);
 				arreglo.setValorInsercion(j, temporal);
+				if (espacio / 2 <= 0)
+					arreglo.updateOrdanados(0, i);
 			}
 		}
 	}

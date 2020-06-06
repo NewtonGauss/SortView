@@ -15,6 +15,7 @@ public class Insercion implements Estrategia {
 				j = j - 1;
 			}
 			arreglo.setValorInsercion(j+1, valorActual);
+			arreglo.updateOrdanados(0, i+1);
 		}
 
 	}

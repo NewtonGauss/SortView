@@ -4,10 +4,21 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import ordenamientos.Burbujeo;
+import ordenamientos.Insercion;
+import ordenamientos.MergeSort;
+import ordenamientos.QuickSort;
+import ordenamientos.Seleccion;
+import ordenamientos.ShellSort;
+
 @SuppressWarnings ("serial")
 public class Ventana extends JFrame{
 	
-	VistaArreglo panelArreglo = new VistaArreglo();
+	private VistaArreglo panelArreglo;
+	
+	public Ventana() {
+		panelArreglo = new VistaArreglo(new Seleccion(), 10, 2);
+	}
 
 	public void init() {
 		add(panelArreglo);
