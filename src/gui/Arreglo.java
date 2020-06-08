@@ -78,6 +78,25 @@ public class Arreglo {
 		};
 
 		public abstract void inicializarArreglo(Arreglo arreglo);
+		public static Orden stringToOrden(String ordenString) {
+			Orden orden;
+			switch (ordenString) {
+			case "casi":
+				orden = CASI_ORDENADO;
+				break;
+			case "ordenado":
+				orden = ORDENADO;
+				break;
+			case "inverso":
+				orden = INVERSO;
+				break;
+			case "aleatorio":
+			default:
+				orden = ALEATORIO;
+				break;
+			}
+			return orden;
+		}
 	}
 
 	private void ordenAscedente() {

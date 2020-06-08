@@ -4,6 +4,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import com.sun.source.tree.ParenthesizedTree;
+
 import gui.Arreglo.Orden;
 import ordenamientos.QuickSort;
 
@@ -12,15 +14,17 @@ public class Ventana extends JFrame {
 
 	private VistaOrdenamiento panelArreglo;
 
-	public Ventana() {
-		Integer[] arregloInteger = new Integer[100];
-		Arreglo arreglo = new Arreglo(arregloInteger);
-		panelArreglo = new VistaOrdenamiento(arreglo, new QuickSort(), 10,
-				Orden.ALEATORIO);
+	public Ventana(VistaOrdenamiento panel) {
+		panelArreglo = panel;
 	}
 
 	public static void main(String[] args) {
-		Ventana gui = new Ventana();
+		OpcionesParser parser = new OpcionesParser(args);
+		Arreglo arreglo = new Arreglo(new Integer[parser.getCantEl()]);
+		VistaOrdenamiento panel = new VistaOrdenamiento(arreglo,
+				parser.getEstrategia(), parser.getSleep(),
+				parser.getCondicionInicial());
+		Ventana gui = new Ventana(panel);
 		gui.init();
 		gui.run();
 	}
