@@ -3,7 +3,7 @@ package archivo;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
-import gui.VistaArreglo.Orden;
+import gui.Arreglo.Orden;
 import ordenamientos.Estrategia;
 
 public class RegistroOrden {

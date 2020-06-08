@@ -4,16 +4,19 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import gui.VistaArreglo.Orden;
-import ordenamientos.MergeSort;
+import gui.Arreglo.Orden;
+import ordenamientos.QuickSort;
 
 @SuppressWarnings ("serial")
 public class Ventana extends JFrame {
 
-	private VistaArreglo panelArreglo;
+	private VistaOrdenamiento panelArreglo;
 
 	public Ventana() {
-		panelArreglo = new VistaArreglo(new MergeSort(), 10, Orden.ALEATORIO);
+		Integer[] arregloInteger = new Integer[100];
+		Arreglo arreglo = new Arreglo(arregloInteger);
+		panelArreglo = new VistaOrdenamiento(arreglo, new QuickSort(), 10,
+				Orden.ALEATORIO);
 	}
 
 	public static void main(String[] args) {
@@ -33,9 +36,13 @@ public class Ventana extends JFrame {
 		requestFocusInWindow();
 	}
 
-	public void run() { panelArreglo.run(); }
+	public void run() {
+		panelArreglo.run();
+	}
 
 	@Override
-	public Dimension getPreferredSize() { return new Dimension(800, 450); }
+	public Dimension getPreferredSize() {
+		return new Dimension(800, 450);
+	}
 
 }

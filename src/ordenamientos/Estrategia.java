@@ -1,7 +1,7 @@
 package ordenamientos;
 
-import gui.VistaArreglo;
+import gui.Arreglo;
 
 public interface Estrategia {
-	public void ordenar(VistaArreglo arreglo);
+	public void ordenar(Arreglo arreglo);
 }

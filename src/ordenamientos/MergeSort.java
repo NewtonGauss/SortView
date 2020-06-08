@@ -1,16 +1,16 @@
 package ordenamientos;
 
-import gui.VistaArreglo;
+import gui.Arreglo;
 
 public class MergeSort implements Estrategia {
 
 	@Override
-	public void ordenar(VistaArreglo arreglo) {
-		ordenar(arreglo, 0, arreglo.arregloLength() - 1);
-		arreglo.setParteOrdenada(0, arreglo.arregloLength() - 1);
+	public void ordenar(Arreglo arreglo) {
+		ordenar(arreglo, 0, arreglo.length() - 1);
+		arreglo.setParteOrdenada(0, arreglo.length() - 1);
 	}
 
-	private void ordenar(VistaArreglo arreglo, int limiteIzq, int limiteDer) {
+	private void ordenar(Arreglo arreglo, int limiteIzq, int limiteDer) {
 		if (limiteIzq < limiteDer) {
 			int puntoMedio = (limiteIzq + limiteDer) / 2;
 
@@ -21,13 +21,13 @@ public class MergeSort implements Estrategia {
 		}
 	}
 
-	private void merge(VistaArreglo arreglo, int limiteIzq, int puntoMedio,
+	private void merge(Arreglo arreglo, int limiteIzq, int puntoMedio,
 			int limiteDer) {
 		int n1 = puntoMedio - limiteIzq + 1;
 		int n2 = limiteDer - puntoMedio;
 
 		Integer[] arregloTemporalIzquierdo = new Integer[n1];
-		Integer[] arregloTemporalDerecho= new Integer[n2];
+		Integer[] arregloTemporalDerecho = new Integer[n2];
 
 		for (int i = 0; i < n1; ++i)
 			arregloTemporalIzquierdo[i] = arreglo.getValor(limiteIzq + i);

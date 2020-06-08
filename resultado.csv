@@ -2,3 +2,5 @@ Algoritmo,Condicion,Cantidad de elementos,Tiempo en segundos
 MergeSort,ALEATORIO,100,7.82
 MergeSort,ALEATORIO,100,7.83
 MergeSort,ALEATORIO,100,7.79
+MergeSort,ALEATORIO,100,7.88
+QuickSort,ALEATORIO,100,14.22
