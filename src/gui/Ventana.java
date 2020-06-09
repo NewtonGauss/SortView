@@ -4,8 +4,6 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import com.sun.source.tree.ParenthesizedTree;
-
 import gui.Arreglo.Orden;
 import ordenamientos.QuickSort;
 

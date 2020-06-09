@@ -22,14 +22,16 @@ public class VistaOrdenamiento extends JPanel {
 	private int tiempoSleep;
 	private Estrategia estrategia;
 	private Orden condicionInicial;
-	private static final int anchoRect = 7;
-	private static final int multAltoRect = 4;
+	private static  int anchoRect = 7;
+	private static  int multAltoRect = 4;
 
 	public VistaOrdenamiento(Arreglo arreglo, Estrategia ordenamiento, int sleep,
 			Orden orden) {
 		this.arreglo = arreglo;
 		this.arreglo.setPanel(this);
 		setBackground(Color.DARK_GRAY);
+		Dimension tamVentana = getSize();
+		anchoRect = tamVentana.width/arreglo.length();
 		orden.inicializarArreglo(arreglo);
 		condicionInicial = orden;
 		tiempoSleep = sleep;
@@ -66,6 +68,7 @@ public class VistaOrdenamiento extends JPanel {
 		Graphics2D graphics = (Graphics2D) graphicsGenerico;
 		escribirDetalles(graphics);
 		pintarArreglo(graphics);
+		
 	}
 
 	private void escribirDetalles(Graphics2D graphics) {
@@ -82,9 +85,11 @@ public class VistaOrdenamiento extends JPanel {
 
 	private void pintarArreglo(Graphics2D graphics) {
 		Dimension currentDimension = getRootPane().getSize();
+		anchoRect = (int) ((int) (currentDimension.width/(arreglo.length())));
+		multAltoRect = (int) ((currentDimension.height)/(arreglo.length()));
 		for (int i = 0; i < arreglo.length(); i++) {
 			int alto = arreglo.getValor(i) * multAltoRect;
-			int xPos = (i + 8) * anchoRect;
+			int xPos = (i + 2) * anchoRect;
 			int yPos = (int) (currentDimension.getHeight()) - alto;
 			setColorElemento(graphics, i);
 			graphics.fillRect(xPos, yPos, anchoRect, alto);
